@@ -1,0 +1,56 @@
+param (
+    [string]$ImagePath
+)
+
+$ErrorActionPreference = "Stop"
+
+try {
+    Add-Type -AssemblyName System.Runtime.WindowsRuntime
+    $asTaskGeneric = ([System.WindowsRuntimeSystemExtensions].GetMethods() | Where-Object { 
+        $_.Name -eq 'AsTask' -and $_.GetParameters().Count -eq 1 -and $_.GetParameters()[0].ParameterType.Name -eq 'IAsyncOperation`1' 
+    })[0]
+
+    function Await($WinRtTask, $ResultType) {
+        $asTask = $asTaskGeneric.MakeGenericMethod($ResultType)
+        $netTask = $asTask.Invoke($null, @($WinRtTask))
+        $netTask.Wait(10000) | Out-Null
+        $netTask.Result
+    }
+
+    [Windows.Storage.StorageFile, Windows.Storage, ContentType = WindowsRuntime] | Out-Null
+    [Windows.Graphics.Imaging.BitmapDecoder, Windows.Graphics, ContentType = WindowsRuntime] | Out-Null
+    [Windows.Media.Ocr.OcrEngine, Windows.Foundation, ContentType = WindowsRuntime] | Out-Null
+
+    $fullPath = [System.IO.Path]::GetFullPath($ImagePath)
+    $fileTask = [Windows.Storage.StorageFile]::GetFileFromPathAsync($fullPath)
+    $file = Await $fileTask ([Windows.Storage.StorageFile])
+
+    $streamTask = $file.OpenAsync([Windows.Storage.FileAccessMode]::Read)
+    $stream = Await $streamTask ([Windows.Storage.Streams.IRandomAccessStream])
+
+    $decoderTask = [Windows.Graphics.Imaging.BitmapDecoder]::CreateAsync($stream)
+    $decoder = Await $decoderTask ([Windows.Graphics.Imaging.BitmapDecoder])
+
+    $bitmapTask = $decoder.GetSoftwareBitmapAsync()
+    $bitmap = Await $bitmapTask ([Windows.Graphics.Imaging.SoftwareBitmap])
+
+    $engine = [Windows.Media.Ocr.OcrEngine]::TryCreateFromUserProfileLanguages()
+    if ($null -eq $engine) {
+        $lang = [Windows.Globalization.Language]::new("en-US")
+        $engine = [Windows.Media.Ocr.OcrEngine]::TryCreateFromLanguage($lang)
+    }
+
+    $ocrTask = $engine.RecognizeAsync($bitmap)
+    $result = Await $ocrTask ([Windows.Media.Ocr.OcrResult])
+
+    $lines = @()
+    foreach ($line in $result.Lines) {
+        $lines += $line.Text
+    }
+    $extracted = $lines -join "`n"
+    Write-Output $extracted
+}
+catch {
+    Write-Error $_.Exception.Message
+    exit 1
+}

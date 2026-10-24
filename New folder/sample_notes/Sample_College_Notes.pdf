@@ -1,0 +1,124 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [4 0 R 6 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 5 0 R /Resources << /Font << /F1 3 0 R >> >> >>
+endobj
+5 0 obj
+<< /Length 1245 >>
+stream
+BT
+/F1 12 Tf
+50 750 Td
+16 TL
+/F1 18 Tf
+(CampusSaathi AI - Sample College Notes) Tj
+T*
+/F1 11 Tf
+(Department of Computer Science & Engineering - Semester 4) Tj
+T*
+T*
+(UNIT 1: DATA STRUCTURES AND ALGORITHM ANALYSIS) Tj
+T*
+(----------------------------------------------------------------------) Tj
+T*
+(1. Asymptotic Notations:) Tj
+T*
+(   - Big-O \(O\): Represents the upper bound of algorithm runtime \(Worst Case\).) Tj
+T*
+(   - Omega: Represents the lower bound of runtime \(Best Case\).) Tj
+T*
+(   - Theta: Represents the tight bound where upper and lower bounds meet.) Tj
+T*
+() Tj
+T*
+(2. Binary Search Trees \(BST\):) Tj
+T*
+(   - A binary tree where the left subtree contains keys smaller than the node.) Tj
+T*
+(   - The right subtree contains keys strictly greater than the root node.) Tj
+T*
+(   - Search, insertion, and deletion complexity: O\(h\) where h is tree height.) Tj
+T*
+(   - In a balanced BST \(AVL or Red-Black\), h = O\(log n\).) Tj
+T*
+(   - In a degenerate BST, worst-case complexity degrades to O\(n\).) Tj
+T*
+() Tj
+T*
+(3. Common College Exam Questions:) Tj
+T*
+(   - Question: Differentiate between Stack \(LIFO\) and Queue \(FIFO\).) Tj
+T*
+(   - Question: Explain In-order, Pre-order, and Post-order tree traversals.) Tj
+T*
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 7 0 R /Resources << /Font << /F1 3 0 R >> >> >>
+endobj
+7 0 obj
+<< /Length 1064 >>
+stream
+BT
+/F1 12 Tf
+50 750 Td
+16 TL
+(UNIT 2: DATABASE MANAGEMENT SYSTEMS \(DBMS\)) Tj
+T*
+(----------------------------------------------------------------------) Tj
+T*
+(1. ACID Properties in Transaction Processing:) Tj
+T*
+(   - Atomicity: All operations succeed or none are applied \(All-or-Nothing\).) Tj
+T*
+(   - Consistency: Database moves from one valid state to another valid state.) Tj
+T*
+(   - Isolation: Concurrent transactions do not interfere with each other.) Tj
+T*
+(   - Durability: Committed changes survive power loss or system crash.) Tj
+T*
+() Tj
+T*
+(2. Database Normalization:) Tj
+T*
+(   - 1NF: Eliminates repeating groups; ensures atomic/indivisible values.) Tj
+T*
+(   - 2NF: In 1NF and removes partial functional dependencies on candidate keys.) Tj
+T*
+(   - 3NF: In 2NF and removes transitive functional dependencies \(X -> Y -> Z\).) Tj
+T*
+(   - BCNF: Stricter version of 3NF; for every X -> Y, X must be a super key.) Tj
+T*
+() Tj
+T*
+(3. Important Exam Formula:) Tj
+T*
+(   - Candidate Keys formula: Minimal super key with uniqueness property.) Tj
+T*
+ET
+endstream
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000191 00000 n 
+0000000317 00000 n 
+0000001614 00000 n 
+0000001740 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+2856
+%%EOF

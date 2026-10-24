@@ -1,0 +1,8 @@
+# ==============================================================================
+# CampusSaathi AI - Dependencies
+# Local AI College Companion powered by Python, Streamlit, Ollama & Gemma 3:1B
+# ==============================================================================
+
+streamlit>=1.32.0,<2.0.0
+requests>=2.31.0,<3.0.0
+pypdf>=4.1.0,<6.0.0
